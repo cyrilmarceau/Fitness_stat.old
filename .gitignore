@@ -1,0 +1,44 @@
+.env
+
+doc.MD
+
+admin/.DS_Store
+admin/node_modules
+admin/dist
+
+
+# local env files
+admin/.env.local
+admin/.env.*.local
+
+# Log files
+admin/npm-debug.log*
+admin/yarn-debug.log*
+admin/yarn-error.log*
+admin/pnpm-debug.log*
+
+# Editor directories and files
+admin/.idea
+admin/.vscode
+admin/*.suo
+admin/*.ntvs*
+admin/*.njsproj
+admin/*.sln
+admin/*.sw?
+
+
+api/node_modules
+api/public/hot
+api/public/storage
+api/storage/*.key
+api/vendor
+api/.env
+api/.env.backup
+api/.phpunit.result.cache
+api/docker-compose.override.yml
+api/Homestead.json
+api/Homestead.yaml
+api/npm-debug.log
+api/yarn-error.log
+api/.idea
+api/.vscode

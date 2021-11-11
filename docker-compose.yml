@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+    database:
+        image: fitness_stat_database
+        container_name: database
+        restart: always
+        image: mariadb:10.4-focal
+        environment:
+            - MYSQL_USER=${MY_SQL_USER}
+            - MYSQL_PASSWORD=${MY_SQL_PASSWORD}
+            - MYSQL_DATABASE=${MY_SQL_DATABASE}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+        ports:
+            - 3326:3306
+    api:
+        container_name: api
+        build:
+            context: .
+            dockerfile: api/Dockerfile
+        volumes: 
+            - ./src:/var/www/html/api
+        image: 'laravelapp'
+        ports:
+            - 8100:80
+        volumes:
+            - ./src:/var/www/html/api
+            - ./api:/var/www/html/api
+            - ./src/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+        depends_on:
+            - database
+    admin:
+        container_name: admin
+        build:
+            context: .
+            dockerfile: admin/Dockerfile
+        volumes:
+            - './admin:/app'
+            - '/app/node_modules'
+        ports:
+            - '8101:8080'
