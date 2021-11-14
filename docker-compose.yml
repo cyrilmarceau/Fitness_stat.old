@@ -35,7 +35,7 @@ services:
             context: .
             dockerfile: admin/Dockerfile
         volumes:
+            - './admin:/node_modules'
             - './admin:/app'
-            - '/app/node_modules'
         ports:
             - '8101:8080'
