@@ -17,9 +17,12 @@ class WorkoutFactory extends Factory
      */
     public function definition()
     {
+
+        $random = Carbon::today()->subDays(rand(0, 365))->toDateString();
+        
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'date' => Carbon::now()->toDateString(),
+            'date' => $random,
         ];
     }
 }
