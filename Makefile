@@ -6,7 +6,7 @@ else
 endif
 	
 build-and-up:
-	docker-compose --build up -d docker-compose stop
+	docker-compose --build up -d
 
 stop:
 	docker-compose stop
