@@ -40,6 +40,19 @@ services:
             - ./docker-compose/nginx:/etc/nginx/conf.d
         networks:
             - travellist
+    admin:
+        container_name: admin
+        build:
+            context: .
+            dockerfile: admin/Dockerfile
+        volumes:
+            - './admin:/app'
+        stdin_open: true
+        tty: true
+        ports:
+            - '8101:8080'
+        environment:
+            - CHOKIDAR_USEPOLLING=true
 
 networks:
     travellist:
