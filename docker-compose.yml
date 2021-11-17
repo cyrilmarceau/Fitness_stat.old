@@ -1,45 +1,46 @@
 version: '3.8'
 
 services:
-    database:
-        image: fitness_stat_database
-        container_name: database
-        restart: always
+    api:
+        build:
+            args:
+                user: cyril
+                uid: 1000
+            context: .
+            dockerfile: api/Dockerfile
+        image: travellist
+        container_name: api
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./api/:/var/www
+        networks:
+            - travellist
+    db:
         image: mariadb:10.4-focal
+        container_name: db
+        restart: unless-stopped
         environment:
-            - MYSQL_USER=${MY_SQL_USER}
-            - MYSQL_PASSWORD=${MY_SQL_PASSWORD}
-            - MYSQL_DATABASE=${MY_SQL_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
         ports:
             - 3326:3306
-    api:
-        container_name: api
-        build:
-            context: .
-            dockerfile: api/Dockerfile
-        volumes: 
-            - ./src:/var/www/html/api
-        image: 'laravelapp'
+        networks:
+            - travellist
+    nginx:
+        image: nginx:1.17-alpine
+        container_name: nginx
+        restart: unless-stopped
         ports:
             - 8100:80
         volumes:
-            - ./api:/var/www/html/api
-            - ./src/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
-        depends_on:
-            - database
-    admin:
-        container_name: admin
-        build:
-            context: .
-            dockerfile: admin/Dockerfile
-        volumes:
-            - './admin:/app'
-            #- ~/.composer-docker/cache:/root/.composer/cache:delegated
-            #- ./admin:/app:cached
-        stdin_open: true
-        tty: true
-        ports:
-            - '8101:8080'
-        environment:
-            - CHOKIDAR_USEPOLLING=true
+            - ./api:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - travellist
+
+networks:
+    travellist:
+        driver: bridge
