@@ -1,8 +1,8 @@
 ssh-container:
 ifeq "$(filter-out ssh-container, $(MAKECMDGOALS))" "api"
-	docker exec -t $(filter-out ssh-container, $(MAKECMDGOALS)) /bin/bash
+	docker exec -it $(filter-out ssh-container, $(MAKECMDGOALS)) /bin/bash
 else
-	docker exec -t $(filter-out ssh-container, $(MAKECMDGOALS)) /bin/sh
+	docker exec -it $(filter-out ssh-container, $(MAKECMDGOALS)) /bin/sh
 endif
 	
 build-and-up:

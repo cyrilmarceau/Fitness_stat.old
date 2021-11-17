@@ -24,7 +24,6 @@ services:
         ports:
             - 8100:80
         volumes:
-            - ./src:/var/www/html/api
             - ./api:/var/www/html/api
             - ./src/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
         depends_on:
@@ -36,8 +35,8 @@ services:
             dockerfile: admin/Dockerfile
         volumes:
             - './admin:/app'
-            - ~/.composer-docker/cache:/root/.composer/cache:delegated
-            - ./admin:/app:cached
+            #- ~/.composer-docker/cache:/root/.composer/cache:delegated
+            #- ./admin:/app:cached
         stdin_open: true
         tty: true
         ports:

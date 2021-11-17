@@ -1,5 +1,8 @@
 FROM php:8.0-apache
 
+RUN groupadd -g 1000 cyril && \
+   useradd -r -u 1000 -g cyril cyril
+
 RUN apt-get update && apt-get install -y \
         libpng-dev \
         zlib1g-dev \
@@ -16,9 +19,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete
 
+
+
 WORKDIR /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chown -R www-data:www-data /var/www/html \
+RUN chown -R cyril:cyril /var/www/html \
     && a2enmod rewrite
+
+USER cyril
