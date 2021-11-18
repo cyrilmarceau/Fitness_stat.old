@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\SerieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("workouts", WorkoutController::class);
+Route::get("workouts", [WorkoutController::class, 'index']);
+Route::post("workout", [WorkoutController::class, 'findWorkoutByDate']);
+
+Route::get("series", [SerieController::class, 'index']);
+Route::get("series/workout/{id}", [SerieController::class, 'getAllSeriesByWorkoutID']);

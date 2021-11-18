@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Exercice;
 use Illuminate\Database\Seeder;
 use App\Models\Machine;
 use App\Models\Serie;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Machine::factory(4)->create();
         Weight::factory(4)->create();
         Serie::factory(6)->create();
+        Exercice::factory(6)->create();
     }
 }

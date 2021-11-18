@@ -23,9 +23,16 @@ class Serie extends Model
     }
 
     public static function findSeriesByWorkoutID($id) {
-        $series = DB::table('series')
-        ->where('workout_id', '=', $id)
-        ->get();
+
+        $seriesByWorkout = Serie::where('workout_id', '=', $id)->get();
+
+        $series = null;
+
+        foreach ($seriesByWorkout as $serie) {
+            $serie = Serie::with('machine')->with('weight')->with('workout')->findOrFail($serie->id);
+            $serie->makeHidden(['workout_id','machine_id','weight_id']);
+            $series[] = $serie;
+        }
         return $series;
     }
 
