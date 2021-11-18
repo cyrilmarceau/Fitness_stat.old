@@ -19,7 +19,8 @@ class CreateExercicesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('type');
-            $table->foreignId("serie_id");
+            $table->foreignId("workout_id");
+            $table->foreignId("machine_id");
         });
     }
 

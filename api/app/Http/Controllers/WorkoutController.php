@@ -21,8 +21,18 @@ class WorkoutController extends Controller{
     public function findWorkoutByDate(Request $request) {
         if($request->has('date')){
             $workouts = Workout::findWorkoutByDate($request);
-            return response()->json($workouts);
-        } else {
+            if($workouts){
+                return response()->json([
+                    'datas' => $workouts,
+                    'status' => 200
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'No workout found',
+                    'status' => 404
+                ]);
+            }
+        } else  {
             return response()->json([
                 'message' => 'Please provide a date',
                 'status' => 400

@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Machine;
-use App\Models\Weight;
-use App\Models\Workout;
+use App\Models\Exercice;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SerieFactory extends Factory
@@ -17,10 +15,10 @@ class SerieFactory extends Factory
     public function definition()
     {
         return [
-            'workout_id' => Workout::inRandomOrder()->first()->id,
-            'machine_id' => Machine::inRandomOrder()->first()->id,
-            'weight_id' => Weight::inRandomOrder()->first()->id,
+            'exercice_id' => Exercice::inRandomOrder()->first()->id,
             'repetitions' => rand(8, 12),
+            'difficulty' => $this->faker->randomElement([true,false]),
+            'weight' => rand(0,150),
         ];
     }
 }

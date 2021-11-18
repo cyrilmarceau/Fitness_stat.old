@@ -16,11 +16,10 @@ class CreateSeriesTable extends Migration
         Schema::create('series', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId("workout_id");
-            $table->foreignId("machine_id");
-            $table->foreignId("weight_id");
-            $table->integer("total")->default(5);
+            $table->foreignId("exercice_id");
             $table->string('repetitions');
+            $table->integer('weight');
+            $table->boolean('difficulty');
            
         });
     }

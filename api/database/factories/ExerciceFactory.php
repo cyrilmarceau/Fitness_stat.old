@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Machine;
 use App\Models\Serie;
+use App\Models\Workout;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use stdClass;
 
 class ExerciceFactory extends Factory
 {
@@ -16,10 +17,11 @@ class ExerciceFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Curl haltères sur banc incliné',
+            'workout_id' => Workout::inRandomOrder()->first()->id,
+            'machine_id' => Machine::inRandomOrder()->first()->id,
+            'type' => 'dumbbells',
             'slug' => 'dumbbell-curl-on-incline-bench',
-            'type' => 'Haltère',
-            'serie_id' => 6,
+            'name' => 'Curl haltères sur banc incliné',
         ];
     }
 }

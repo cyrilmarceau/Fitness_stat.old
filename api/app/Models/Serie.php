@@ -10,16 +10,16 @@ class Serie extends Model
 {
     use HasFactory;
 
+    public function exercice() {
+        return $this->belongsTo(Exercice::class);
+    }
+
     public function workout() {
         return $this->belongsTo(Workout::class);
     }
 
     public function machine() {
         return $this->belongsTo(Machine::class);
-    }
-
-    public function weight() {
-        return $this->belongsTo(Weight::class);
     }
 
     public static function findSeriesByWorkoutID($id) {
@@ -29,7 +29,7 @@ class Serie extends Model
         $series = null;
 
         foreach ($seriesByWorkout as $serie) {
-            $serie = Serie::with('machine')->with('weight')->with('workout')->findOrFail($serie->id);
+            $serie = Serie::with('machine')->with('workout')->findOrFail($serie->id);
             $serie->makeHidden(['workout_id','machine_id','weight_id']);
             $series[] = $serie;
         }
@@ -37,7 +37,7 @@ class Serie extends Model
     }
 
     public static function findSerie($id) {
-        $serie = Serie::with('machine')->with('weight')->with('workout')->findOrFail($id);
+        $serie = Serie::with('machine')->with('workout')->findOrFail($id);
         $serie->makeHidden(['workout_id','machine_id','weight_id']);
         return $serie;
     }

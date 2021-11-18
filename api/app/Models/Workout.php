@@ -16,7 +16,13 @@ class Workout extends Model
 
     public static function findWorkoutByDate($request)
     {
-        $date = Carbon::parse($request->get('date'))->format('Y-m-d');;
-        return Workout::where('date', '=', $date)->first();
+        $date = Carbon::parse($request->get('date'))->format('Y-m-d');
+        $res = Workout::where('date', '=', $date)->first();
+        if($res) {
+            return $res;
+        } else {
+            return null;
+        }
+        return $res;
     }
 }
