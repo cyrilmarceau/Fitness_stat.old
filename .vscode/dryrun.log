@@ -1,5 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/cyril/Bureau/Fitness_stat'
-docker exec -t  /bin/sh
-make: Leaving directory '/home/cyril/Bureau/Fitness_stat'
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/Users/marce/Desktop/fitness'
+docker exec -it  /bin/sh
+make: Leaving directory 'c:/Users/marce/Desktop/fitness'
  

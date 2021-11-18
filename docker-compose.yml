@@ -27,6 +27,8 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
         ports:
             - 3326:3306
+        volumes:
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
         networks:
             - travellist
     nginx:
