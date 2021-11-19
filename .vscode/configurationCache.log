@@ -1,1 +1,1 @@
-{"buildTargets":["build-and-up","restart","seed-data","ssh-container","stop"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["build-and-up","down","restart","restart-linux","seed-data","ssh-container"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

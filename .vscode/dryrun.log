@@ -1,5 +1,8 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make: Entering directory 'c:/Users/marce/Desktop/fitness'
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/cyril/Bureau/Fitness_stat'
 docker exec -it  /bin/sh
-make: Leaving directory 'c:/Users/marce/Desktop/fitness'
+make: Leaving directory '/home/cyril/Bureau/Fitness_stat'
+ 
+Makefile:22: warning: overriding recipe for target 'restart'
+Makefile:15: warning: ignoring old recipe for target 'restart'
  

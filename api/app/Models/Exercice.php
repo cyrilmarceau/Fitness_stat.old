@@ -9,7 +9,39 @@ class Exercice extends Model
 {
     use HasFactory;
 
+    public function exercice() {
+        return $this->belongsTo(Exercice::class);
+    }
+
+    public function workout() {
+        return $this->belongsTo(Workout::class);
+    }
+
+    public function machine() {
+        return $this->belongsTo(Machine::class);
+    }
+
     public function serie() {
-        return $this->belongsTo(Serie::class);
+        return $this->hasMany(Serie::class);
+    }
+
+
+    public static function findExercicesByWorkoutID($id) {
+
+        $exercicesByWorkout = Exercice::where('workout_id', '=', $id)->get();
+
+        if(!$exercicesByWorkout) {
+            return null;
+        } else {
+            $exercices = null;
+
+            foreach ($exercicesByWorkout as $exercice) {
+                $exercicesRelations = Exercice::with('machine')->with('workout')->with('serie')->findOrFail($exercice->id);
+                $exercicesRelations->makeHidden(['workout_id','machine_id']);
+                $exercices[] = $exercicesRelations;
+            }
+            return $exercices;
+        }
+
     }
 }
