@@ -11,11 +11,18 @@ use App\Models\Workout;
 class WorkoutController extends Controller{
 
     public function index() {
-        $workouts = Workout::all();
-        return response()->json([
-            'datas' => $workouts,
-            'status' => 200
-        ]);
+        $workouts = Workout::index();
+        if($workouts){
+            return response()->json([
+                'datas' => $workouts,
+                'status' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'No workout found',
+                'status' => 404
+            ]);
+        }
     }
 
     public function findWorkoutByDate(Request $request) {

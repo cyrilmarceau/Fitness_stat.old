@@ -14,6 +14,16 @@ class Workout extends Model
         'user_id',
     ];
 
+    public static function index() {
+        $workouts = Workout::all();
+
+        if($workouts){
+            return $workouts;
+        } else {
+            return null;
+        }
+    }
+
     public static function findWorkoutByDate($request)
     {
         $date = Carbon::parse($request->get('date'))->format('Y-m-d');

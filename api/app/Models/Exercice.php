@@ -25,6 +25,15 @@ class Exercice extends Model
         return $this->hasMany(Serie::class);
     }
 
+    public static function index() {
+        $exercices = Exercice::all();
+        if($exercices) {
+            return $exercices;
+        } else {
+            return null;
+        }
+    }
+
 
     public static function findExercicesByWorkoutID($id) {
 

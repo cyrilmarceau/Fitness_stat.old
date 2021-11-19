@@ -8,8 +8,19 @@ use Illuminate\Http\Request;
 class ExerciceController extends Controller
 {
     public function index() {
-        $exercices = Exercice::all();
-        return response()->json($exercices);
+        $exercices = Exercice::index();
+
+        if($exercices) {
+            return response()->json([
+                'datas' => $exercices,
+                'status' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'No exercice found',
+                'status' => 404
+            ]);
+        }
     }
 
     public function getAllExerciceByWorkoutID($id) {

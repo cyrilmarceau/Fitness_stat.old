@@ -26,6 +26,3 @@ Route::post("workout", [WorkoutController::class, 'findWorkoutByDate']);
 
 Route::get("exercices", [ExerciceController::class, 'index']);
 Route::get("workout/{id}/exercices/", [ExerciceController::class, 'getAllExerciceByWorkoutID']);
-
-// Route::get("series", [SerieController::class, 'index']);
-// Route::get("series/workout/{id}", [SerieController::class, 'getAllSeriesByWorkoutID']);
